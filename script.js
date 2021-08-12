@@ -170,9 +170,10 @@ ${i + 1} Withdraw
 };
 
 const checkLogins = () => {
+  let checkLogBoolFlag = false;
   for (const account of accounts) {
-    const owner = account.owner;
-    const pin = account.pin;
+    let owner = account.owner;
+    let pin = account.pin;
     amountOfTheOwner = account.movements;
     const welcomeMessage = () => {
       if (hours < 12 && hours > 6) {
@@ -190,13 +191,14 @@ const checkLogins = () => {
       cycleLoadAmounts();
       containerApp.style.opacity = '1';
       welcomeMessage();
-      break;
-    } else {
-      alert('Wrong Username/Password !\n Please try again !');
-      inputLoginPin.value = '';
-      inputLoginUsername.value = '';
+      checkLogBoolFlag = true;
       break;
     }
+  }
+  if (checkLogBoolFlag === false) {
+    alert('Wrong Username/Password !\n Please try again !');
+    inputLoginPin.value = '';
+    inputLoginUsername.value = '';
   }
 };
 
